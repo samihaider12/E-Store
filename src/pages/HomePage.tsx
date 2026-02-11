@@ -24,7 +24,7 @@ import {
 import productsData from '../data/products.json';
 import ProductCard from '../products/ProductCard';
 import type { Product } from '../types';
-
+import projectVideo from "../assets/projectVideo.mp4" 
 const HomePage: React.FC = () => {
   const featuredProducts = (productsData as Product[]).slice(0, 4);
 
@@ -137,7 +137,7 @@ const HomePage: React.FC = () => {
                 >
                   <Box
                     component="video"
-                    src="/src/assets/projectVideo.mp4"  
+                    src={projectVideo}  
                     autoPlay
                     loop
                     muted
