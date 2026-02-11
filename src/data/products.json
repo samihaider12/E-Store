@@ -1,0 +1,252 @@
+[
+  {
+    "id": 1,
+    "name": "Elegant Silk Kaftan",
+    "price": 15999,
+    "category": "kaftans",
+    "image": "https://www.faridahasan.com/images/thumbs/0005081_rani-kaftan.jpeg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Navy Blue", "Emerald Green", "Burgundy"],
+    "description": "Luxurious silk kaftan perfect for special occasions"
+  },
+  {
+    "id": 2,
+    "name": "Traditional Black Abaya",
+    "price": 8999,
+    "category": "abayas",
+    "image": "https://ke.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/40/288198/1.jpg?8994",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "colors": ["Black", "Navy", "Charcoal"],
+    "description": "Classic modest wear with elegant embroidery"
+  },
+  {
+    "id": 3,
+    "name": "Wedding Lehnga",
+    "price": 89999,
+    "category": "wedding",
+    "image": "https://gulaal.pk/cdn/shop/products/B-5-1.jpg?v=1753861071&width=493",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "colors": ["Ivory", "White", "Champagne"],
+    "description": "Stunning ball gown with intricate beadwork"
+  },
+  {
+    "id": 4,
+    "name": "Sequin Party Dress",
+    "price": 19999,
+    "category": "party",
+    "image": "https://i.pinimg.com/originals/16/6c/3b/166c3b1aa06236db322dd76e94ee2655.jpg",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["Gold", "Silver", "Rose Gold"],
+    "description": "Glamorous sequined dress for special events"
+  },
+  {
+    "id": 5,
+    "name": "Floral Print Kaftan",
+    "price": 7499,
+    "category": "kaftans",
+    "image": "https://i.etsystatic.com/16039986/r/il/a1ae99/4643265566/il_fullxfull.4643265566_e1l2.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Pink Floral", "Blue Floral", "Green Floral"],
+    "description": "Comfortable cotton kaftan with beautiful prints"
+  },
+  {
+    "id": 6,
+    "name": "Embroidered Abaya",
+    "price": 12999,
+    "category": "abayas",
+    "image": "https://i.pinimg.com/originals/40/7d/0a/407d0adf1f070234ca411e4285106e60.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Navy", "White"],
+    "description": "Elegant abaya with gold thread embroidery"
+  },
+  {
+    "id": 7,
+    "name": "Mermaid Wedding Dress",
+    "price": 129999,
+    "category": "wedding",
+    "image": "https://gulaal.pk/cdn/shop/products/WU-04-01.jpg?v=1753860947&width=1946",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["White", "Ivory"],
+    "description": "Fitted mermaid style with lace details"
+  },
+  {
+    "id": 8,
+    "name": "Cocktail Party Dress",
+    "price": 15999,
+    "category": "party",
+    "image": "https://i.pinimg.com/originals/16/6c/3b/166c3b1aa06236db322dd76e94ee2655.jpg",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "colors": ["Red", "Black", "Royal Blue"],
+    "description": "Chic cocktail dress perfect for evening events"
+  },
+  {
+    "id": 9,
+    "name": "Bohemian Kaftan",
+    "price": 9999,
+    "category": "kaftans",
+    "image": "https://i.pinimg.com/originals/0a/23/4a/0a234a399584b926684e9d7ea892671d.png",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Turquoise", "Coral", "Purple"],
+    "description": "Free-flowing bohemian style kaftan"
+  },
+  {
+    "id": 10,
+    "name": "Modern White Abaya",
+    "price": 10999,
+    "category": "abayas",
+    "image": "https://i.etsystatic.com/25695932/r/il/fbc75e/3304462015/il_794xN.3304462015_cc8x.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Grey", "Navy"],
+    "description": "Contemporary cut with modern styling"
+  },
+  {
+    "id": 11,
+    "name": "Vintage Wedding Dress",
+    "price": 74999,
+    "category": "wedding",
+    "image": "https://gulaal.pk/cdn/shop/products/1Q0A2019.jpg?v=1753860983&width=1946",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["Ivory", "Antique White"],
+    "description": "Vintage-inspired lace wedding gown"
+  },
+  {
+    "id": 12,
+    "name": "Glitter Party Dress",
+    "price": 17999,
+    "category": "party",
+    "image": "https://cdn.shopify.com/s/files/1/1732/6543/products/Pakistani_Black_Chiffon_Party_Dress_2_1800x1800.jpg?v=1574271066",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["Silver", "Gold", "Black"],
+    "description": "Sparkling dress that catches the light beautifully"
+  },
+  {
+    "id": 13,
+    "name": "Floral light Yellow Kaftan",
+    "price": 7999,
+    "category": "kaftans",
+    "image": "https://images.boksha.com/uploads/products/55707/images/p5TwX7qskJ8WfmoqHsEkjMioFFy00XaE4i0UiLSA.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Pink Floral", "Blue Floral", "Yellow Floral"],
+    "description": "Comfortable cotton kaftan with beautiful prints"
+  },
+  {
+    "id": 14,
+    "name": "Floral Gold Kaftan",
+    "price": 7299,
+    "category": "kaftans",
+    "image": "https://i.pinimg.com/originals/de/0a/18/de0a181b01062eee912ab3a22c843838.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Pink Floral", "Blue Floral", "Green Floral"],
+    "description": "Comfortable cotton kaftan with beautiful prints"
+  },
+  {
+    "id": 15,
+    "name": "Floral Pink Kaftan",
+    "price": 9999,
+    "category": "kaftans",
+    "image": "https://cdn.onbuy.com/product/65b9a3fed98ac/500-500/muslim-hijab-dress-abaya-dubai-islam-arabic-kaftan-robe-djellaba-femme-african-dresses-for-women-caftan-marocain-266857802.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Pink Floral", "Blue Floral", "Green Floral"],
+    "description": "Comfortable cotton kaftan with beautiful prints"
+  },
+  {
+    "id": 16,
+    "name": "Embroidered Abaya",
+    "price": 17999,
+    "category": "abayas",
+    "image": "https://i.pinimg.com/originals/0c/f1/43/0cf143b39de39a8cf801cff448f969ac.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Navy", "White"],
+    "description": "Elegant abaya with gold thread embroidery"
+  },
+  {
+    "id": 17,
+    "name": "Embroidered xremal Abaya",
+    "price": 10999,
+    "category": "abayas",
+    "image": "https://i.pinimg.com/736x/2c/12/7a/2c127af71613679826df391d49b30341.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Navy", "White"],
+    "description": "Elegant abaya with gold thread embroidery"
+  },
+  {
+    "id": 18,
+    "name": "Wedding Lehnga",
+    "price": 79999,
+    "category": "wedding",
+    "image": "https://gulaal.pk/cdn/shop/products/WS-31_20_5_39987135-78cf-4f59-9af9-e68a338c5553.jpg?v=1753860837&width=1946",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "colors": ["Ivory", "White", "Champagne"],
+    "description": "Stunning ball gown with intricate beadwork"
+  },
+  {
+    "id": 19,
+    "name": "Wedding Lehnga",
+    "price": 99999,
+    "category": "wedding",
+    "image": "https://gulaal.pk/cdn/shop/products/WS-28_20_1.jpg?v=1753860844&width=493",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "colors": ["Ivory", "White", "Champagne"],
+    "description": "Stunning ball gown with intricate beadwork"
+  },
+  {
+    "id": 20,
+    "name": "Wedding Lehnga",
+    "price": 88999,
+    "category": "wedding",
+    "image": "https://gulaal.pk/cdn/shop/products/1Q0A2133.jpg?v=1753860981&width=1000",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "colors": ["Ivory", "White", "Champagne"],
+    "description": "Stunning ball gown with intricate beadwork"
+  },
+  {
+    "id": 21,
+    "name": "Wedding Lehnga",
+    "price": 83999,
+    "category": "wedding",
+    "image": "https://gulaal.pk/cdn/shop/files/1O9A0944.png?v=1753860588&width=1946",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "colors": ["Ivory", "White", "Champagne"],
+    "description": "Stunning ball gown with intricate beadwork"
+  },
+  {
+    "id": 22,
+    "name": "Black Party Dress",
+    "price": 18999,
+    "category": "party",
+    "image": "https://i.pinimg.com/originals/63/04/29/630429abbe48a68c7a21afa3db8c819d.jpg",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["Silver", "Gold", "Black"],
+    "description": "Sparkling dress that catches the light beautifully"
+  },
+  {
+    "id": 23,
+    "name": "Blue Party Dress",
+    "price": 19999,
+    "category": "party",
+    "image": "https://i.pinimg.com/736x/40/89/33/408933460e0669e50863ece73b68b389.jpg",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["Silver", "Gold", "Black"],
+    "description": "Sparkling dress that catches the light beautifully"
+  },
+  {
+    "id": 24,
+    "name": "White Party Dress",
+    "price": 27999,
+    "category": "party",
+    "image": "https://i.pinimg.com/originals/63/04/29/630429abbe48a68c7a21afa3db8c819d.jpg",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["Silver", "Gold", "Black"],
+    "description": "Sparkling dress that catches the light beautifully"
+  },
+  {
+    "id": 25,
+    "name": "Purple Party Dress",
+    "price": 17999,
+    "category": "party",
+    "image": "https://i.pinimg.com/736x/c8/ba/b5/c8bab5a6f7ab721539a140f0f6f399fe.jpg",
+    "sizes": ["XS", "S", "M", "L"],
+    "colors": ["Silver", "Gold", "Black"],
+    "description": "Sparkling dress that catches the light beautifully"
+  }
+]
