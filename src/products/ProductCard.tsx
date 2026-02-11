@@ -79,7 +79,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <Box sx={{ position: 'relative' }}>
           <CardMedia
             component="img"
-            height="240"
+            height="220"
             image={product.image}
             alt={product.name}
             sx={{
@@ -112,11 +112,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography 
             gutterBottom 
-            variant="h6" 
-            component="h3"
             sx={{
               fontFamily: '"Playfair Display", serif',
-              fontWeight: 600,
+              fontWeight: 550,
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
@@ -131,7 +129,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             variant="body2" 
             color="text.secondary" 
             sx={{
-              mb: 2,
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
@@ -139,10 +136,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               WebkitBoxOrient: 'vertical',
             }}
           >
-            {product.description}
+            {product.description}.
           </Typography>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <Typography variant="body2" color="text.secondary">
               Available in {product.sizes.length} sizes
             </Typography>
@@ -157,7 +154,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
               color: 'transparent',
-              mt: 1,
+              
             }}
           >
             Rs {product.price.toLocaleString()}
@@ -171,6 +168,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               startIcon={<Visibility />}
               onClick={handleViewDetails}
               sx={{ 
+                height:"30px",
                 borderColor: 'primary.main',
                 color: 'primary.main',
                 '&:hover': {
@@ -187,6 +185,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               startIcon={<AddShoppingCart />}
               onClick={handleAddToCart}
               sx={{ 
+                height:"35px",
                 background: 'linear-gradient(45deg, #7c3aed, #ec4899)',
                 '&:hover': {
                   background: 'linear-gradient(45deg, #6d28d9, #db2777)',

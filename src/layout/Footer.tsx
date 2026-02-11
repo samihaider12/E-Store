@@ -27,12 +27,12 @@ const Footer: React.FC = () => {
       sx={{
         backgroundColor: 'grey.900',
         color: 'white',
-        py: 6,
+        // py: 1,
         mt: 'auto',
       }}
     >
       <Container maxWidth="xl">
-        <Grid container spacing={4}>
+        <Grid container spacing={4 } sx={{p:0.5}}>
           {/* Company Info */}
           <Grid size={{xs:12,md:4}}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -94,9 +94,7 @@ const Footer: React.FC = () => {
               <Link component={RouterLink} to="/products?category=kaftans" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Kaftans
               </Link>
-              <Link component={RouterLink} to="/products?category=abayas" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
-                Abayas
-              </Link>
+               
               <Link component={RouterLink} to="/products?category=wedding" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Wedding Dresses
               </Link>
@@ -156,11 +154,11 @@ const Footer: React.FC = () => {
           </Grid>
         </Grid>
 
-        <Divider sx={{ my: 4, backgroundColor: 'grey.700' }} />
+        <Divider sx={{  backgroundColor: 'grey.700' }} />
 
         {/* Copyright */}
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
-          <Typography variant="body2" color="grey.400">
+          <Typography  color="grey.400">
             © {new Date().getFullYear()} Farhan's Store. All rights reserved.
           </Typography>
           <Box sx={{ display: 'flex', gap: 3 }}>

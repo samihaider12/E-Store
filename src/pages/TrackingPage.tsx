@@ -1,3 +1,4 @@
+// pages/TrackingPage.tsx
 import React, { useState } from 'react';
 import {
   Container,
@@ -9,18 +10,15 @@ import {
   Stepper,
   Step,
   StepLabel,
-  StepConnector,
-  Grid,
+  Grid, // Updated to Grid2 for MUI v6
   Card,
   CardContent,
-  Alert,
   LinearProgress,
   Chip,
 } from '@mui/material';
 import {
   Search as SearchIcon,
   LocalShipping,
-  CheckCircle,
   Inventory,
   Assignment,
   DoneAll,
@@ -60,9 +58,7 @@ const TrackingPage: React.FC = () => {
   const [searchResult, setSearchResult] = useState<typeof trackingData[0] | null>(null);
 
   const handleSearch = () => {
-    if (!trackingId.trim()) {
-      return;
-    }
+    if (!trackingId.trim()) return;
     const result = trackingData.find(order => order.id === trackingId.toUpperCase());
     setSearchResult(result || null);
   };
@@ -73,294 +69,189 @@ const TrackingPage: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+    <Box sx={{ minHeight: '100vh', bgcolor: '#f8f9fa' }}>
+      {/* FULL WIDTH HERO SECTION */}
+      <Box 
+        sx={{ 
+          width: '100%', 
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          pt: 10, 
+          pb: 14,
+          mt:-8, 
+          textAlign: 'center',
+          color: 'white'
+        }}
       >
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <Typography
             variant="h2"
             sx={{
               fontFamily: '"Playfair Display", serif',
               fontWeight: 700,
+              fontSize: { xs: '2.5rem', md: '3.5rem' },
               mb: 2,
             }}
           >
             Track Your Order
           </Typography>
-          <Typography variant="h6" color="text.secondary">
-            Enter your order ID to track its status and location
+          <Typography sx={{ fontSize: "18px", fontWeight: 400, opacity: 0.9, maxWidth: '600px', mx: 'auto', px: 2 }}>
+            Enter your order ID below to see exactly where your premium fashion pieces are.
           </Typography>
-        </Box>
+        </motion.div>
+      </Box>
 
-        {/* Search Section */}
-        <Paper elevation={0} sx={{ p: 4, mb: 6, borderRadius: 3 }}>
-          <Grid container spacing={2} alignItems="center">
-            <Grid size={{xs:12,md:8}}>
-              <TextField
-                fullWidth
-                label="Enter Order ID"
-                placeholder="e.g., ORD-2024-001"
-                value={trackingId}
-                onChange={(e) => setTrackingId(e.target.value)}
-                InputProps={{
-                  startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />,
-                }}
-              />
-            </Grid>
-            <Grid size={{xs:12,md:4}}>
-              <Button
-                fullWidth
-                variant="contained"
-                size="large"
-                onClick={handleSearch}
-                sx={{
-                  height: '56px',
-                  background: 'linear-gradient(45deg, #7c3aed, #ec4899)',
-                  '&:hover': {
-                    background: 'linear-gradient(45deg, #6d28d9, #db2777)',
-                  },
-                }}
-              >
-                Track Order
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
-
-        {/* Recent Orders */}
-        <Typography variant="h5" sx={{ mb: 3, fontFamily: '"Playfair Display", serif' }}>
-          Recent Orders
-        </Typography>
-        <Grid container spacing={3} sx={{ mb: 6 }}>
-          {trackingData.map((order) => (
-            <Grid size={{xs:12,md:6}} key={order.id}>
-              <Card
-                elevation={0}
-                sx={{
-                  borderRadius: 3,
-                  cursor: 'pointer',
-                  '&:hover': {
-                    boxShadow: 4,
-                  },
-                }}
-                onClick={() => {
-                  setTrackingId(order.id);
-                  setSearchResult(order);
-                }}
-              >
-                <CardContent>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
-                    <Box>
-                      <Typography variant="h6">{order.id}</Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Ordered on {order.date}
-                      </Typography>
-                    </Box>
-                    <Chip
-                      label={steps[order.status].label}
-                      color={getStatusColor(order.status)}
-                      size="small"
-                    />
-                  </Box>
-                  <Typography variant="body2" sx={{ mb: 2 }}>
-                    {order.items.join(', ')}
-                  </Typography>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="body2" color="text.secondary">
-                      Estimated: {order.estimatedDelivery}
-                    </Typography>
-                    <Button size="small" endIcon={<SearchIcon />}>
-                      Track
-                    </Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-
-        {/* Tracking Results */}
-        {searchResult && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+      {/* CONTENT SECTION (INSIDE CONTAINER) */}
+      <Container maxWidth="lg" sx={{ mt: -8, pb: 8 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Search Section */}
+          <Paper 
+            elevation={10} 
+            sx={{ 
+              p: { xs: 2, md: 4 }, 
+              mb: 6, 
+              borderRadius: 4,
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              backdropFilter: 'blur(10px)'
+            }}
           >
-            <Paper elevation={0} sx={{ p: 4, borderRadius: 3 }}>
-              <Box sx={{ mb: 4 }}>
-                <Typography variant="h5" sx={{ mb: 1, fontFamily: '"Playfair Display", serif' }}>
-                  Order #{searchResult.id}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Placed on {searchResult.date} • Estimated delivery: {searchResult.estimatedDelivery}
-                </Typography>
-              </Box>
-
-              {/* Progress Bar */}
-              <Box sx={{ mb: 4 }}>
-                <LinearProgress
-                  variant="determinate"
-                  value={(searchResult.status / (steps.length - 1)) * 100}
-                  sx={{
-                    height: 8,
-                    borderRadius: 4,
-                    mb: 2,
-                    backgroundColor: 'grey.200',
-                    '& .MuiLinearProgress-bar': {
-                      background: 'linear-gradient(45deg, #7c3aed, #ec4899)',
-                    },
+            <Grid container spacing={2} alignItems="center">
+              <Grid size={{ xs: 12, md: 8 }}>
+                <TextField
+                  fullWidth
+                  label="Order ID"
+                  placeholder="e.g., ORD-2024-001"
+                  value={trackingId}
+                  onChange={(e) => setTrackingId(e.target.value)}
+                  InputProps={{
+                    startAdornment: <SearchIcon sx={{ mr: 1, color: 'primary.main' }} />,
+                    sx: { borderRadius: 3 }
                   }}
                 />
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  {steps.map((step, index) => (
-                    <Typography
-                      key={step.label}
-                      variant="caption"
-                      sx={{
-                        color: index <= searchResult.status ? 'primary.main' : 'text.secondary',
-                        fontWeight: index <= searchResult.status ? 'bold' : 'normal',
-                      }}
-                    >
-                      {step.label}
-                    </Typography>
-                  ))}
-                </Box>
-              </Box>
-
-              {/* Stepper */}
-              <Box sx={{ width: '100%' }}>
-                <Stepper
-                  activeStep={searchResult.status}
-                  orientation="vertical"
-                  connector={
-                    <StepConnector
-                      sx={{
-                        '& .MuiStepConnector-line': {
-                          borderColor: 'primary.main',
-                          borderLeftWidth: 2,
-                          minHeight: 40,
-                        },
-                      }}
-                    />
-                  }
-                >
-                  {steps.map((step, index) => (
-                    <Step key={step.label}>
-                      <StepLabel
-                        icon={
-                          <Box
-                            sx={{
-                              width: 40,
-                              height: 40,
-                              borderRadius: '50%',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              backgroundColor: index <= searchResult.status ? 'primary.main' : 'grey.300',
-                              color: index <= searchResult.status ? 'white' : 'text.secondary',
-                            }}
-                          >
-                            {step.icon}
-                          </Box>
-                        }
-                        sx={{
-                          '& .MuiStepLabel-label': {
-                            color: index <= searchResult.status ? 'text.primary' : 'text.secondary',
-                            fontWeight: index <= searchResult.status ? 'bold' : 'normal',
-                          },
-                        }}
-                      >
-                        <Box>
-                          <Typography variant="h6">{step.label}</Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            {step.description}
-                          </Typography>
-                          {index === searchResult.status && (
-                            <Typography variant="caption" color="primary" sx={{ display: 'block', mt: 1 }}>
-                              {index === steps.length - 1
-                                ? 'Delivered successfully'
-                                : `Expected: ${searchResult.estimatedDelivery}`}
-                            </Typography>
-                          )}
-                        </Box>
-                      </StepLabel>
-                    </Step>
-                  ))}
-                </Stepper>
-              </Box>
-
-              {/* Order Details */}
-              <Grid container spacing={3} sx={{ mt: 4 }}>
-                <Grid size={{xs:12,md:6}}>
-                  <Card elevation={0} sx={{ borderRadius: 3 }}>
-                    <CardContent>
-                      <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
-                        Order Details
-                      </Typography>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        <strong>Order ID:</strong> {searchResult.id}
-                      </Typography>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        <strong>Order Date:</strong> {searchResult.date}
-                      </Typography>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        <strong>Items:</strong> {searchResult.items.length}
-                      </Typography>
-                      <Typography variant="body2">
-                        <strong>Delivery Address:</strong> {searchResult.address}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-                <Grid size={{xs:12,md:6}}>
-                  <Card elevation={0} sx={{ borderRadius: 3 }}>
-                    <CardContent>
-                      <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
-                        Shipping Information
-                      </Typography>
-                      <Alert severity="info" sx={{ mb: 2 }}>
-                        Your order is currently at step {searchResult.status + 1} of {steps.length}
-                      </Alert>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        <strong>Current Status:</strong> {steps[searchResult.status].label}
-                      </Typography>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        <strong>Estimated Delivery:</strong> {searchResult.estimatedDelivery}
-                      </Typography>
-                      <Typography variant="body2">
-                        <strong>Contact Support:</strong> support@farhansstore.com
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
               </Grid>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  size="large"
+                  onClick={handleSearch}
+                  sx={{
+                    height: '56px',
+                    borderRadius: 3,
+                    background: 'linear-gradient(45deg, #7c3aed, #ec4899)',
+                    boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)',
+                    '&:hover': {
+                      background: 'linear-gradient(45deg, #6d28d9, #db2777)',
+                    },
+                  }}
+                >
+                  Track Now
+                </Button>
+              </Grid>
+            </Grid>
+          </Paper>
+
+          {/* Rest of the UI remains clean and beautiful */}
+          {/* Recent Orders */}
+          <Typography variant="h5" sx={{ mb: 3, fontFamily: '"Playfair Display", serif', fontWeight: 600 }}>
+            Recent Orders
+          </Typography>
+          <Grid container spacing={3} sx={{ mb: 6 }}>
+            {trackingData.map((order) => (
+              <Grid size={{ xs: 12, md: 6 }} key={order.id}>
+                <Card
+                  elevation={0}
+                  sx={{
+                    borderRadius: 4,
+                    border: '1px solid #eee',
+                    transition: '0.3s',
+                    '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' },
+                  }}
+                  onClick={() => {
+                    setTrackingId(order.id);
+                    setSearchResult(order);
+                  }}
+                >
+                  <CardContent>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                      <Box>
+                        <Typography variant="h6" fontWeight="bold">{order.id}</Typography>
+                        <Typography variant="body2" color="text.secondary">Ordered: {order.date}</Typography>
+                      </Box>
+                      <Chip 
+                        label={steps[order.status].label} 
+                        color={getStatusColor(order.status)} 
+                        sx={{ fontWeight: 600, borderRadius: 2 }}
+                      />
+                    </Box>
+                    <Typography variant="body2" color="text.primary" sx={{ mb: 2 }}>
+                      {order.items.join(' • ')}
+                    </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <Typography variant="caption" sx={{ bgcolor: '#f0f0f0', px: 1, py: 0.5, borderRadius: 1 }}>
+                        Est: {order.estimatedDelivery}
+                      </Typography>
+                      <Button size="small" variant="text">Track Details</Button>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+
+          {/* Tracking Results Area */}
+          {searchResult && (
+            <Paper elevation={0} sx={{ p: { xs: 3, md: 5 }, borderRadius: 4, border: '1px solid #eee', mb: 6 }}>
+              <Box sx={{ mb: 4 }}>
+                <Typography variant="h4" sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 700 }}>
+                  Order Status
+                </Typography>
+                <Typography color="text.secondary">Order ID: {searchResult.id}</Typography>
+              </Box>
+
+              <LinearProgress
+                variant="determinate"
+                value={(searchResult.status / (steps.length - 1)) * 100}
+                sx={{ height: 10, borderRadius: 5, mb: 4, bgcolor: '#eee' }}
+              />
+
+              <Stepper activeStep={searchResult.status} orientation="vertical">
+                {steps.map((step, index) => (
+                  <Step key={step.label}>
+                    <StepLabel icon={
+                      <Box sx={{ 
+                        width: 40, height: 40, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        bgcolor: index <= searchResult.status ? 'primary.main' : '#e0e0e0', color: 'white'
+                      }}>
+                        {step.icon}
+                      </Box>
+                    }>
+                      <Typography variant="h6" fontWeight={index <= searchResult.status ? 700 : 400}>{step.label}</Typography>
+                      <Typography variant="body2" color="text.secondary">{step.description}</Typography>
+                    </StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
             </Paper>
-          </motion.div>
-        )}
+          )}
 
-        {!searchResult && trackingId && (
-          <Alert severity="warning" sx={{ mt: 3 }}>
-            No order found with ID: {trackingId}. Please check your order ID and try again.
-          </Alert>
-        )}
+          {/* Help Section */}
+          <Paper sx={{ p: 4, textAlign: 'center', borderRadius: 4, bgcolor: '#f1f5f9', border: 'none' }}>
+            <Typography variant="h6" sx={{ fontFamily: '"Playfair Display", serif', mb: 1 }}>Need Assistance?</Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>Our support team is available 24/7 to help you with your shipment.</Typography>
+            <Button variant="outlined" sx={{ borderRadius: 2 }}>Contact Support</Button>
+          </Paper>
 
-        {/* Help Section */}
-        <Paper elevation={0} sx={{ p: 4, mt: 6, borderRadius: 3, backgroundColor: 'grey.50' }}>
-          <Typography variant="h5" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
-            Need Help?
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-            If you're having trouble tracking your order, please contact our customer support.
-          </Typography>
-          <Button variant="contained" startIcon={<CheckCircle />}>
-            Contact Support
-          </Button>
-        </Paper>
-      </motion.div>
-    </Container>
+        </motion.div>
+      </Container>
+    </Box>
   );
 };
 

@@ -35,7 +35,7 @@ const HomePage: React.FC = () => {
         sx={{
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           color: 'white',
-          py: 12,
+          py: 2,
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -53,8 +53,7 @@ const HomePage: React.FC = () => {
                   sx={{ 
                     backgroundColor: 'rgba(255,255,255,0.2)', 
                     color: 'white',
-                    mb: 3,
-                    fontSize: '0.875rem',
+                    fontSize: '15px',
                   }}
                 />
                 <Typography
@@ -149,16 +148,19 @@ const HomePage: React.FC = () => {
                       objectFit: 'cover',
                     }}
                   />
-                  <CardContent sx={{ p: 3 }}>
-                    <Typography variant="h5" sx={{ fontFamily: '"Playfair Display", serif', mb: 1 }}>
+                  <CardContent sx={{ p: 2 }}>
+                    <Typography sx={{ fontFamily: '"Playfair Display", serif',
+                                     fontWeight:500,
+                                     fontSize:"20px",
+                                     }}>
                       Wedding Lehnga
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', mb: 2 }}>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)'}}>
                       Luxurious comfort meets timeless style
                     </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-                        Rs 15,999
+                      <Typography  sx={{ fontWeight: 500,fontSize:"25px",color:"green" }}>
+                        15,999/Rs
                       </Typography>
                       <Button
                         component={RouterLink}
