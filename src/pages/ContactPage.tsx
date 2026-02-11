@@ -175,7 +175,7 @@ const ContactPage: React.FC = () => {
               </Typography>
 
               <Stack spacing={4}>
-                {contactInfo.map((info, index) => (
+                {contactInfo.map((info, _index) => (
                   <Card
                     key={info.title}
                     elevation={0}

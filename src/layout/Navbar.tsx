@@ -18,7 +18,11 @@ import {
   Typography,
   useScrollTrigger,
   Avatar,
+  useTheme,
+  useMediaQuery,
+  ListItemIcon,
 } from '@mui/material';
+
 import {
   Menu as MenuIcon,
   ShoppingCart,
@@ -28,318 +32,357 @@ import {
   LocalShipping,
   Info,
   ContactMail,
+  AccountCircle,
 } from '@mui/icons-material';
+
 import { useCart } from '../context/CartContext';
 
-interface Props {
-  window?: () => Window;
-}
-
-const Navbar: React.FC<Props> = ({ window }) => {
+const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [userAnchorEl, setUserAnchorEl] = useState<null | HTMLElement>(null);
+  const [moreAnchorEl, setMoreAnchorEl] = useState<null | HTMLElement>(null);
+
   const navigate = useNavigate();
   const location = useLocation();
   const { totalItems } = useCart();
-  
+
+  const theme = useTheme();
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 50,
   });
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const isHomePage = location.pathname === '/';
 
-  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // Always primary color
+  const getTextColor = () => theme.palette.primary.main;
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+  const handleUserMenuClose = () => setUserAnchorEl(null);
+  const handleMoreMenuClose = () => setMoreAnchorEl(null);
 
   const navItems = [
-    { label: 'Home', path: '/', icon: <Home sx={{ mr: 1 }} /> },
-    { label: 'Products', path: '/products', icon: <Store sx={{ mr: 1 }} /> },
-    { label: 'Track Order', path: '/tracking', icon: <LocalShipping sx={{ mr: 1 }} /> },
-    { label: 'About', path: '/about', icon: <Info sx={{ mr: 1 }} /> },
-    { label: 'Contact', path: '/contact', icon: <ContactMail sx={{ mr: 1 }} /> },
+    { label: 'Home', path: '/', icon: <Home /> },
+    { label: 'Products', path: '/products', icon: <Store /> },
+    { label: 'Track Order', path: '/tracking', icon: <LocalShipping /> },
+    { label: 'About', path: '/about', icon: <Info /> },
+    { label: 'Contact', path: '/contact', icon: <ContactMail /> },
   ];
 
+  /* =======================
+      Mobile Drawer
+  ======================== */
+
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Avatar
+    <Box sx={{ textAlign: 'center' }}>
+
+      <Box
+        sx={{
+          p: 2,
+          bgcolor: 'primary.main',
+          color: '#fff',
+        }}
+      >
+        <Typography
           sx={{
-            width: 40,
-            height: 40,
-            background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-            mr: 1,
+            fontFamily: '"Playfair Display", serif',
+            fontWeight: 700,
+            fontSize: 22,
           }}
         >
-          <Typography sx={{ color: 'black', fontWeight: 'bold' }}>F</Typography>
-        </Avatar>
-        <Typography  sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 500 }}>
           Farhan's Store
         </Typography>
       </Box>
+
       <List>
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
-            <ListItemButton 
-              onClick={() => navigate(item.path)}
-              selected={location.pathname === item.path}
+
+            <ListItemButton
+              onClick={() => {
+                navigate(item.path);
+                setMobileOpen(false);
+              }}
               sx={{
-                textAlign: 'center',
-                '&.Mui-selected': {
-                  backgroundColor: 'primary.main',
-                  color: 'black',
-                  '&:hover': {
-                    backgroundColor: 'primary.dark',
-                  },
-                  '& .MuiListItemIcon-root': {
-                    color: 'black',
-                  },
+                '&:hover': {
+                  bgcolor: theme.palette.primary.light,
+                  color: '#fff',
                 },
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', color: location.pathname === item.path ? 'black' : 'text.primary' }}>
+              <ListItemIcon sx={{ color: 'primary.main' }}>
                 {item.icon}
-              </Box>
+              </ListItemIcon>
+
               <ListItemText primary={item.label} />
+
             </ListItemButton>
+
           </ListItem>
         ))}
       </List>
+
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
-
-  // Check if current path is home page
-  const isHomePage = location.pathname === '/';
-
   return (
     <>
-      <AppBar 
-        position="fixed" 
+      {/* =======================
+            AppBar
+      ======================== */}
+
+      <AppBar
+        position="fixed"
         elevation={trigger ? 4 : 0}
         sx={{
-          backgroundColor: trigger || !isHomePage ? 'background.paper' : 'transparent',
-          backdropFilter: 'blur(10px)',
-          transition: 'all 0.3s ease',
-          borderBottom: trigger || !isHomePage ? '1px solid rgba(0, 0, 0, 0.12)' : 'none',
-          boxShadow: trigger || !isHomePage ? 1 : 'none',
+          bgcolor: theme.palette.background.paper,
+          borderBottom: `1px solid ${theme.palette.divider}`,
         }}
       >
+
         <Container maxWidth="xl">
+
           <Toolbar sx={{ justifyContent: 'space-between' }}>
-            {/* Left: Logo and Mobile Menu */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+
+            {/* ================= Logo ================= */}
+
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+
               <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{ 
-                  mr: 2, 
-                  display: { sm: 'none' },
-                  color: trigger || !isHomePage ? 'text.primary' : 'black',
+                sx={{
+                  display: { xs: 'flex', sm: 'none' },
+                  color: getTextColor(),
                 }}
+                onClick={handleDrawerToggle}
               >
                 <MenuIcon />
               </IconButton>
-              
-              <Box 
+
+              <Box
                 component={RouterLink}
                 to="/"
-                sx={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
                   gap: 1,
                   textDecoration: 'none',
-                  color: 'inherit'
                 }}
               >
                 <Avatar
                   sx={{
-                    width: 40,
-                    height: 40,
-                    background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                    bgcolor: 'primary.main',
+                    width: 36,
+                    height: 36,
+                    fontWeight: 'bold',
                   }}
                 >
-                  <Typography sx={{ color: 'black', fontWeight: 'bold' }}>F</Typography>
+                  F
                 </Avatar>
+
                 <Typography
-                  variant="h6"
                   sx={{
                     fontWeight: 700,
-                    color: trigger || !isHomePage ? 'text.primary' : 'black',
+                    color: getTextColor(),
+                    display: { xs: 'none', sm: 'block' },
                     fontFamily: '"Playfair Display", serif',
-                    textShadow: !trigger && isHomePage ? '2px 2px 4px rgba(0,0,0,0.3)' : 'none',
                   }}
                 >
                   Farhan's Store
                 </Typography>
+
               </Box>
+
             </Box>
 
-            {/* Center: Desktop Navigation */}
-            <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 1 }}>
+            {/* ================= Desktop Nav ================= */}
+
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+
               {navItems.map((item) => (
+
                 <Button
                   key={item.label}
                   component={RouterLink}
                   to={item.path}
                   startIcon={item.icon}
                   sx={{
-                    color: trigger || !isHomePage ? 'text.primary' : 'black',
-                    textShadow: !trigger && isHomePage ? '1px 1px 2px rgba(0,0,0,0.3)' : 'none',
+                    color: theme.palette.primary.main,
+                    fontWeight: 600,
+
                     '&:hover': {
-                      color: trigger || !isHomePage ? 'primary.main' : 'black',
-                      backgroundColor: !trigger && isHomePage ? 'rgba(255,255,255,0.1)' : 'transparent',
-                      transform: 'translateY(-2px)',
-                    },
-                    transition: 'all 0.3s ease',
-                    position: 'relative',
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      bottom: -5,
-                      left: 0,
-                      width: location.pathname === item.path ? '100%' : 0,
-                      height: 2,
-                      background: (theme) => `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                      transition: 'width 0.3s ease',
-                    },
-                    '&:hover::after': {
-                      width: '100%',
+                      bgcolor: theme.palette.primary.light,
+                      color: '#fff',
                     },
                   }}
                 >
                   {item.label}
                 </Button>
+
               ))}
+
             </Box>
 
-            {/* Right: Cart and User Actions */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            {/* ================= Tablet Nav ================= */}
+
+            <Box sx={{ display: { xs: 'none', sm: 'flex', md: 'none' }, gap: 1 }}>
+
+              {navItems.slice(0, 3).map((item) => (
+
+                <Button
+                  key={item.label}
+                  component={RouterLink}
+                  to={item.path}
+                  sx={{
+                    color: theme.palette.primary.main,
+
+                    '&:hover': {
+                      bgcolor: theme.palette.primary.light,
+                      color: '#fff',
+                    },
+                  }}
+                >
+                  {item.label}
+                </Button>
+
+              ))}
+
+              <Button
+                onClick={(e) => setMoreAnchorEl(e.currentTarget)}
+                sx={{
+                  color: theme.palette.primary.main,
+                  border: `1px solid ${theme.palette.primary.main}`,
+
+                  '&:hover': {
+                    bgcolor: theme.palette.primary.light,
+                    color: '#fff',
+                  },
+                }}
+              >
+                More
+              </Button>
+
+            </Box>
+
+            {/* ================= Right Icons ================= */}
+
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+
               <IconButton
                 component={RouterLink}
                 to="/cart"
                 sx={{
-                  color: trigger || !isHomePage ? 'text.primary' : 'black',
-                  '&:hover': { 
-                    color: 'primary.main',
-                    backgroundColor: !trigger && isHomePage ? 'rgba(255,255,255,0.1)' : 'transparent',
+                  color: theme.palette.primary.main,
+
+                  '&:hover': {
+                    color: theme.palette.primary.dark,
                   },
                 }}
               >
-                <Badge 
-                  badgeContent={totalItems} 
-                  sx={{
-                    '& .MuiBadge-badge': {
-                      background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                      color: 'black',
-                    },
-                  }}
-                >
+                <Badge badgeContent={totalItems} color="primary">
                   <ShoppingCart />
                 </Badge>
               </IconButton>
-              
+
               <IconButton
-                onClick={handleMenuClick}
+                onClick={(e) => setUserAnchorEl(e.currentTarget)}
                 sx={{
-                  color: trigger || !isHomePage ? 'text.primary' : 'black',
-                  '&:hover': { 
-                    color: 'primary.main',
-                    backgroundColor: !trigger && isHomePage ? 'rgba(255,255,255,0.1)' : 'transparent',
+                  color: theme.palette.primary.main,
+
+                  '&:hover': {
+                    color: theme.palette.primary.dark,
                   },
                 }}
               >
                 <Person />
               </IconButton>
-              
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                PaperProps={{
-                  sx: {
-                    borderRadius: 2,
-                    boxShadow: (theme) => `0 10px 40px ${theme.palette.primary.main}20`,
-                    mt: 1,
-                  },
-                }}
-              >
-                <MenuItem 
-                  onClick={() => { navigate('/'); handleMenuClose(); }}
-                  sx={{
-                    '&:hover': {
-                      backgroundColor: 'primary.light',
-                      color: 'black',
-                    },
-                  }}
-                >
-                  <Person sx={{ mr: 1 }} />
-                  My Account
-                </MenuItem>
-                <MenuItem 
-                  onClick={() => { navigate('/tracking'); handleMenuClose(); }}
-                  sx={{
-                    '&:hover': {
-                      backgroundColor: 'primary.light',
-                      color: 'black',
-                    },
-                  }}
-                >
-                  <LocalShipping sx={{ mr: 1 }} />
-                  Track Orders
-                </MenuItem>
-                <MenuItem 
-                  onClick={() => { navigate('/cart'); handleMenuClose(); }}
-                  sx={{
-                    '&:hover': {
-                      backgroundColor: 'primary.light',
-                      color: 'black',
-                    },
-                  }}
-                >
-                  <ShoppingCart sx={{ mr: 1 }} />
-                  View Cart
-                </MenuItem>
-              </Menu>
+
             </Box>
+
           </Toolbar>
+
         </Container>
+
       </AppBar>
 
-      {/* Mobile Drawer */}
-      <Box component="nav">
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { 
-              boxSizing: 'border-box', 
-              width: 280,
-              backgroundColor: 'background.paper',
-            },
+      {/* ================= User Menu ================= */}
+
+      <Menu
+        anchorEl={userAnchorEl}
+        open={Boolean(userAnchorEl)}
+        onClose={handleUserMenuClose}
+      >
+
+        <MenuItem
+          onClick={() => {
+            navigate('/profile');
+            handleUserMenuClose();
           }}
         >
-          {drawer}
-        </Drawer>
-      </Box>
+          <ListItemIcon>
+            <AccountCircle color="primary" fontSize="small" />
+          </ListItemIcon>
+
+          My Account
+        </MenuItem>
+
+        <MenuItem
+          onClick={() => {
+            navigate('/tracking');
+            handleUserMenuClose();
+          }}
+        >
+          <ListItemIcon>
+            <LocalShipping color="primary" fontSize="small" />
+          </ListItemIcon>
+
+          Track Orders
+        </MenuItem>
+
+      </Menu>
+
+      {/* ================= More Menu ================= */}
+
+      <Menu
+        anchorEl={moreAnchorEl}
+        open={Boolean(moreAnchorEl) && isTablet}
+        onClose={handleMoreMenuClose}
+      >
+
+        {navItems.slice(3).map((item) => (
+
+          <MenuItem
+            key={item.label}
+            onClick={() => {
+              navigate(item.path);
+              handleMoreMenuClose();
+            }}
+          >
+            <ListItemIcon color="primary">
+              {item.icon}
+            </ListItemIcon>
+
+            {item.label}
+
+          </MenuItem>
+
+        ))}
+
+      </Menu>
+
+      {/* ================= Drawer ================= */}
+
+      <Drawer
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        sx={{ display: { xs: 'block', sm: 'none' } }}
+      >
+        {drawer}
+      </Drawer>
+
+      {!isHomePage && <Toolbar />}
+
     </>
   );
 };

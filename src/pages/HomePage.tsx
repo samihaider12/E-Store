@@ -1,3 +1,4 @@
+// pages/HomePage.tsx
 import React from 'react';
 import {
   Container,
@@ -8,7 +9,6 @@ import {
   Card,
   CardMedia,
   CardContent,
-   
   Paper,
   Chip,
   Stack,
@@ -24,16 +24,10 @@ import {
 } from '@mui/icons-material';
 import productsData from '../data/products.json';
 import ProductCard from '../products/ProductCard';
-import { useCart } from '../context/CartContext';
 import type { Product } from '../types';
 
 const HomePage: React.FC = () => {
-  const { addToCart } = useCart();
   const featuredProducts = (productsData as Product[]).slice(0, 4);
-
-  const handleAddToCart = (product: Product, size: string, color: string, quantity: number) => {
-    addToCart(product, size, color, quantity);
-  };
 
   return (
     <Box>
@@ -180,7 +174,7 @@ const HomePage: React.FC = () => {
       {/* Features Section */}
       <Container maxWidth="xl" sx={{ py: 8 }}>
         <Grid container spacing={4}>
-          <Grid  size={{xs:12,sm:6 ,md:3}}>
+          <Grid size={{xs:12,sm:6,md:3}}>
             <Paper
               elevation={0}
               sx={{
@@ -200,7 +194,7 @@ const HomePage: React.FC = () => {
               </Typography>
             </Paper>
           </Grid>
-          <Grid  size={{xs:12,sm:6 ,md:3}}>
+          <Grid size={{xs:12,sm:6,md:3}}>
             <Paper
               elevation={0}
               sx={{
@@ -220,7 +214,7 @@ const HomePage: React.FC = () => {
               </Typography>
             </Paper>
           </Grid>
-          <Grid  size={{xs:12,sm:6 ,md:3}}>
+          <Grid size={{xs:12,sm:6,md:3}}>
             <Paper
               elevation={0}
               sx={{
@@ -240,7 +234,7 @@ const HomePage: React.FC = () => {
               </Typography>
             </Paper>
           </Grid>
-          <Grid  size={{xs:12,sm:6 ,md:3}}>
+          <Grid size={{xs:12,sm:6,md:3}}>
             <Paper
               elevation={0}
               sx={{
@@ -284,7 +278,7 @@ const HomePage: React.FC = () => {
         <Grid container spacing={4}>
           {featuredProducts.map((product: Product) => (
             <Grid key={product.id} size={{xs:12,sm:6,md:3}}>
-              <ProductCard product={product} onAddToCart={handleAddToCart} />
+              <ProductCard product={product} />
             </Grid>
           ))}
         </Grid>

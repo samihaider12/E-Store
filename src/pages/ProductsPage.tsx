@@ -1,3 +1,4 @@
+// pages/ProductsPage.tsx
 import React, { useState, useEffect } from 'react';
 import {
   Container,
@@ -21,7 +22,7 @@ import ProductGrid from '../products/ProductGrid';
 import type { Product } from '../types';
 
 const ProductsPage: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>(productsData as Product[]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('name');
@@ -115,7 +116,7 @@ const ProductsPage: React.FC = () => {
           }}
         >
           <Grid container spacing={3} alignItems="center">
-            <Grid size={{xs:12 ,md:6}}>
+            <Grid size={{xs:12, md:6}}>
               <TextField
                 fullWidth
                 placeholder="Search for your perfect style..."
@@ -132,7 +133,7 @@ const ProductsPage: React.FC = () => {
               />
             </Grid>
 
-            <Grid  size={{xs:12 ,md:3}}>
+            <Grid size={{xs:12, md:3}}>
               <TextField
                 fullWidth
                 select
@@ -155,7 +156,7 @@ const ProductsPage: React.FC = () => {
               </TextField>
             </Grid>
 
-            <Grid  size={{xs:12 ,md:3}}>
+            <Grid size={{xs:12, md:3}}>
               <TextField
                 fullWidth
                 select

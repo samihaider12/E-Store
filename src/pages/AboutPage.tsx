@@ -17,10 +17,6 @@ import {
   People,
   History,
   Flag,
-  Star,
-  Email,
-  Phone,
-  LocationOn,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
