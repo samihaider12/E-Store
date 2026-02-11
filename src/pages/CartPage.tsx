@@ -267,7 +267,6 @@ const CartPage: React.FC = () => {
                   </Typography>
                 </Box>
               </Alert>
-
               {/* Checkout Button */}
               <Button
                 fullWidth
@@ -276,9 +275,9 @@ const CartPage: React.FC = () => {
                 onClick={() => navigate('/checkout')}
                 sx={{
                   py: 1.5,
-                  background: 'linear-gradient(45deg, #7c3aed, #ec4899)',
+                   background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                   '&:hover': {
-                    background: 'linear-gradient(45deg, #6d28d9, #db2777)',
+                    background: 'linear-gradient(135deg, #596496ff 0%, #b085daff 100%)',
                   },
                 }}
               >

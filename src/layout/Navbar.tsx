@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
   const drawer = (
     <Box sx={{ textAlign: 'center' }} onClick={handleDrawerToggle}>
       <Box sx={{ p: 2, bgcolor: 'primary.main', color: '#fff' }}>
-        <Typography sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 700, fontSize: 22 }}>
+        <Typography sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 500, fontSize: 22 }}>
           Farhan's Store
         </Typography>
       </Box>
@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
               </IconButton>
               <Box component={RouterLink} to="/" sx={{ display: 'flex', alignItems: 'center', gap: 1, textDecoration: 'none' }}>
                 <Avatar sx={{ bgcolor: 'primary.main', width: 36, height: 36, fontWeight: 'bold' }}>F</Avatar>
-                <Typography sx={{ fontWeight: 700, color: getTextColor(), display: { xs: 'none', sm: 'block' }, fontFamily: '"Playfair Display", serif' }}>
+                <Typography sx={{ fontWeight: 600, color: getTextColor(), display: { xs: 'none', sm: 'block' }, fontFamily: '"Playfair Display", serif' }}>
                   Farhan's Store
                 </Typography>
               </Box>
@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
             {/* Desktop Nav */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
               {navItems.map((item) => (
-                <Button key={item.label} component={RouterLink} to={item.path} startIcon={item.icon} sx={{ color: theme.palette.primary.main, fontWeight: 600, '&:hover': { bgcolor: theme.palette.primary.light, color: '#fff' } }}>
+                <Button key={item.label} component={RouterLink} to={item.path} startIcon={item.icon} sx={{ color: theme.palette.primary.main, fontWeight: 500, '&:hover': { bgcolor: theme.palette.primary.light, color: '#fff' } }}>
                   {item.label}
                 </Button>
               ))}
@@ -147,7 +147,7 @@ const Navbar: React.FC = () => {
         sx={{ pointerEvents: 'none' }}
         slotProps={{ paper: { sx: { pointerEvents: 'auto', mt: 0.5 } } }}
       >
-        <MenuItem onClick={() => { navigate('/profile'); handleAllClose(); }}>
+        <MenuItem onClick={() => { navigate('/contact'); handleAllClose(); }}>
           <ListItemIcon><AccountCircle color="primary" fontSize="small" /></ListItemIcon>
           My Account
         </MenuItem>

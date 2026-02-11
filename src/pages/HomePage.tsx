@@ -130,7 +130,7 @@ const HomePage: React.FC = () => {
                     backgroundColor: 'rgba(255,255,255,0.1)',
                     backdropFilter: 'blur(10px)',
                     border: '1px solid rgba(255,255,255,0.2)',
-                    borderRadius: 4,
+                    borderRadius: "16px",
                     overflow: 'hidden',
                   }}
                 >
@@ -159,7 +159,7 @@ const HomePage: React.FC = () => {
                       Luxurious comfort meets timeless style
                     </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <Typography  sx={{ fontWeight: 500,fontSize:"25px",color:"rgba(4, 151, 73, 1)" }}>
+                      <Typography  sx={{ fontWeight: 500,fontSize:"25px",color:"white" }}>
                         15,999/Rs
                       </Typography>
                       <Button

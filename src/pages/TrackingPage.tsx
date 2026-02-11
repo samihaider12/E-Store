@@ -98,7 +98,7 @@ const TrackingPage: React.FC = () => {
           >
             Track Your Order
           </Typography>
-          <Typography sx={{ fontSize: "18px", fontWeight: 400, opacity: 0.9, maxWidth: '600px', mx: 'auto', px: 2 }}>
+          <Typography sx={{ fontSize: "8px", fontWeight: 400, opacity: 0.9, maxWidth: '600px', mx: 'auto', px: 2 }}>
             Enter your order ID below to see exactly where your premium fashion pieces are.
           </Typography>
         </motion.div>
@@ -117,7 +117,7 @@ const TrackingPage: React.FC = () => {
             sx={{ 
               p: { xs: 2, md: 4 }, 
               mb: 6, 
-              borderRadius: 4,
+              borderRadius: "8px",
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               backdropFilter: 'blur(10px)'
             }}
@@ -145,10 +145,10 @@ const TrackingPage: React.FC = () => {
                   sx={{
                     height: '56px',
                     borderRadius: 3,
-                    background: 'linear-gradient(45deg, #7c3aed, #ec4899)',
+                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)',
                     '&:hover': {
-                      background: 'linear-gradient(45deg, #6d28d9, #db2777)',
+                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     },
                   }}
                 >
@@ -169,7 +169,7 @@ const TrackingPage: React.FC = () => {
                 <Card
                   elevation={0}
                   sx={{
-                    borderRadius: 4,
+                    borderRadius: "8px",
                     border: '1px solid #eee',
                     transition: '0.3s',
                     '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' },
@@ -188,7 +188,7 @@ const TrackingPage: React.FC = () => {
                       <Chip 
                         label={steps[order.status].label} 
                         color={getStatusColor(order.status)} 
-                        sx={{ fontWeight: 600, borderRadius: 2 }}
+                        sx={{ fontWeight: 600, borderRadius: "8px", }}
                       />
                     </Box>
                     <Typography variant="body2" color="text.primary" sx={{ mb: 2 }}>
@@ -208,9 +208,9 @@ const TrackingPage: React.FC = () => {
 
           {/* Tracking Results Area */}
           {searchResult && (
-            <Paper elevation={0} sx={{ p: { xs: 3, md: 5 }, borderRadius: 4, border: '1px solid #eee', mb: 6 }}>
+            <Paper elevation={0} sx={{ p: { xs: 3, md: 5 }, borderRadius: "8px", border: '1px solid #eee', mb: 6 }}>
               <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 700 }}>
+                <Typography variant="h4" sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 500 }}>
                   Order Status
                 </Typography>
                 <Typography color="text.secondary">Order ID: {searchResult.id}</Typography>
@@ -219,7 +219,7 @@ const TrackingPage: React.FC = () => {
               <LinearProgress
                 variant="determinate"
                 value={(searchResult.status / (steps.length - 1)) * 100}
-                sx={{ height: 10, borderRadius: 5, mb: 4, bgcolor: '#eee' }}
+                sx={{ height: 10, borderRadius: "8px", mb: 4, bgcolor: '#eee' }}
               />
 
               <Stepper activeStep={searchResult.status} orientation="vertical">
@@ -227,7 +227,7 @@ const TrackingPage: React.FC = () => {
                   <Step key={step.label}>
                     <StepLabel icon={
                       <Box sx={{ 
-                        width: 40, height: 40, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        width: 40, height: 40, borderRadius: "8px", display: 'flex', alignItems: 'center', justifyContent: 'center',
                         bgcolor: index <= searchResult.status ? 'primary.main' : '#e0e0e0', color: 'white'
                       }}>
                         {step.icon}
@@ -243,7 +243,7 @@ const TrackingPage: React.FC = () => {
           )}
 
           {/* Help Section */}
-          <Paper sx={{ p: 4, textAlign: 'center', borderRadius: 4, bgcolor: '#f1f5f9', border: 'none' }}>
+          <Paper sx={{ p: 4, textAlign: 'center', borderRadius: "8px", bgcolor: '#f1f5f9', border: 'none' }}>
             <Typography variant="h6" sx={{ fontFamily: '"Playfair Display", serif', mb: 1 }}>Need Assistance?</Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>Our support team is available 24/7 to help you with your shipment.</Typography>
             <Button variant="outlined" sx={{ borderRadius: 2 }}>Contact Support</Button>

@@ -81,7 +81,7 @@ const ProductsPage: React.FC = () => {
       sx={{
         minHeight: '100vh',
         mt: -9,
-        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)', // Light stable background
+         
       }}
     >
       {/* Hero Header Section */}
@@ -123,7 +123,7 @@ const ProductsPage: React.FC = () => {
             sx={{
               p: { xs: 2, md: 4 },
               mb: 5,
-              borderRadius: 4,
+              borderRadius: "12px",
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               backdropFilter: 'blur(10px)',
             }}
@@ -183,7 +183,7 @@ const ProductsPage: React.FC = () => {
                         <Sort sx={{ color: 'primary.main' }} />
                       </InputAdornment>
                     ),
-                    sx: { borderRadius: 3, bgcolor: '#f8f9fa' },
+                    sx: { borderRadius: "8px", bgcolor: '#f8f9fa' },
                   }}
                 >
                   {sortOptions.map((option) => (

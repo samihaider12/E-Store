@@ -16,7 +16,7 @@ import {
 import { AddShoppingCart, Visibility } from '@mui/icons-material';
 import type { Product } from '../types';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext'; // Changed import
+import { useCart } from '../context/CartContext';  
 
 interface ProductCardProps {
   product: Product;
@@ -186,9 +186,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               onClick={handleAddToCart}
               sx={{ 
                 height:"35px",
-                background: 'linear-gradient(45deg, #7c3aed, #ec4899)',
+                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 '&:hover': {
-                  background: 'linear-gradient(45deg, #6d28d9, #db2777)',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 },
               }}
             >

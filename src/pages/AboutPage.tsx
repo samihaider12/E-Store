@@ -431,7 +431,7 @@ const AboutPage: React.FC = () => {
       {/* CTA Section */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)',
+           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           color: 'white',
           py: 10,
         }}

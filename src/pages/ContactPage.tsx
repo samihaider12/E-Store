@@ -27,6 +27,17 @@ import {
   Pinterest,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+// Fix for default marker icon in react-leaflet
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -37,6 +48,9 @@ const ContactPage: React.FC = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Map position for Karachi, Pakistan
+  const position: L.LatLngExpression = [24.8607, 67.0011]; // Latitude, Longitude
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,7 +125,7 @@ const ContactPage: React.FC = () => {
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           color: 'white',
           py: 12,
-          mt:-8,
+          mt: -8,
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -126,7 +140,7 @@ const ContactPage: React.FC = () => {
               variant="h1"
               sx={{
                 fontFamily: '"Playfair Display", serif',
-                fontWeight: 700,
+                fontWeight: 500,
                 fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
                 mb: 3,
                 textAlign: 'center',
@@ -153,7 +167,7 @@ const ContactPage: React.FC = () => {
       <Container maxWidth="xl" sx={{ py: 8 }}>
         <Grid container spacing={6}>
           {/* Contact Information */}
-          <Grid size={{xs:12 ,md:4}}>
+          <Grid size={{xs:12,md:4}}>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -161,10 +175,10 @@ const ContactPage: React.FC = () => {
               transition={{ duration: 0.8 }}
             >
               <Typography
-                variant="h3"
+                variant="h4"
                 sx={{
                   fontFamily: '"Playfair Display", serif',
-                  fontWeight: 700,
+                  fontWeight: 500,
                   mb: 4,
                 }}
               >
@@ -176,7 +190,7 @@ const ContactPage: React.FC = () => {
               </Typography>
 
               <Stack spacing={4}>
-                {contactInfo.map((info, _index) => (
+                {contactInfo.map((info) => (
                   <Card
                     key={info.title}
                     elevation={0}
@@ -194,13 +208,13 @@ const ContactPage: React.FC = () => {
                             width: 40,
                             height: 40,
                             borderRadius: '50%',
-                            backgroundColor: 'primary.light',
+                            backgroundColor: 'primary.main',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                           }}
                         >
-                          {React.cloneElement(info.icon, { sx: { color: 'primary.contrastText' } })}
+                          {React.cloneElement(info.icon, { sx: { color: 'white' } })}
                         </Box>
                         <Typography variant="h6" sx={{ fontFamily: '"Playfair Display", serif' }}>
                           {info.title}
@@ -223,7 +237,7 @@ const ContactPage: React.FC = () => {
 
               {/* Social Media */}
               <Box sx={{ mt: 6 }}>
-                <Typography variant="h6" sx={{ mb: 3, fontFamily: '"Playfair Display", serif' }}>
+                <Typography sx={{ mb: 3, fontFamily: '"Playfair Display", serif', fontWeight: 600 }}>
                   Follow Us
                 </Typography>
                 <Stack direction="row" spacing={2}>
@@ -269,19 +283,19 @@ const ContactPage: React.FC = () => {
           </Grid>
 
           {/* Contact Form */}
-          <Grid size={{xs:12 ,md:8}}>
+          <Grid size={{xs:12,md:8}}>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Paper elevation={0} sx={{ p: 4, borderRadius: 3 }}>
+              <Paper elevation={0} sx={{ p: 4, borderRadius: "8px", border: '1px solid', borderColor: 'divider' }}>
                 <Typography
                   variant="h3"
                   sx={{
                     fontFamily: '"Playfair Display", serif',
-                    fontWeight: 700,
+                    fontWeight: 500,
                     mb: 3,
                   }}
                 >
@@ -314,7 +328,7 @@ const ContactPage: React.FC = () => {
 
                 <form onSubmit={handleSubmit}>
                   <Grid container spacing={3}>
-                    <Grid size={{xs:12 ,sm:6}}>
+                    <Grid size={{xs:12,sm:6}}>
                       <TextField
                         required
                         fullWidth
@@ -325,7 +339,7 @@ const ContactPage: React.FC = () => {
                         variant="outlined"
                       />
                     </Grid>
-                    <Grid size={{xs:12 ,sm:6}}>
+                    <Grid size={{xs:12,sm:6}}>
                       <TextField
                         required
                         fullWidth
@@ -337,7 +351,7 @@ const ContactPage: React.FC = () => {
                         variant="outlined"
                       />
                     </Grid>
-                    <Grid size={{xs:12 ,sm:6}}>
+                    <Grid size={{xs:12,sm:6}}>
                       <TextField
                         fullWidth
                         label="Phone Number"
@@ -347,7 +361,7 @@ const ContactPage: React.FC = () => {
                         variant="outlined"
                       />
                     </Grid>
-                    <Grid size={{xs:12 ,sm:6}}>
+                    <Grid size={{xs:12,sm:6}}>
                       <TextField
                         required
                         fullWidth
@@ -380,9 +394,9 @@ const ContactPage: React.FC = () => {
                         sx={{
                           px: 6,
                           py: 1.5,
-                          background: 'linear-gradient(45deg, #7c3aed, #ec4899)',
+                          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                           '&:hover': {
-                            background: 'linear-gradient(45deg, #6d28d9, #db2777)',
+                            background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
                           },
                         }}
                       >
@@ -399,7 +413,7 @@ const ContactPage: React.FC = () => {
                   variant="h4"
                   sx={{
                     fontFamily: '"Playfair Display", serif',
-                    fontWeight: 700,
+                    fontWeight: 500,
                     mb: 4,
                   }}
                 >
@@ -408,8 +422,8 @@ const ContactPage: React.FC = () => {
 
                 <Grid container spacing={3}>
                   {faqs.map((faq, index) => (
-                    <Grid size={{xs:12 ,sm:6}} key={index}>
-                      <Card elevation={0} sx={{ borderRadius: 3, backgroundColor: 'grey.50' }}>
+                    <Grid size={{xs:12,sm:6}} key={index}>
+                      <Card elevation={0} sx={{  borderRadius: "8px", backgroundColor: 'grey.50', height: '100%' }}>
                         <CardContent>
                           <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
                             {faq.question}
@@ -442,7 +456,7 @@ const ContactPage: React.FC = () => {
             variant="h3"
             sx={{
               fontFamily: '"Playfair Display", serif',
-              fontWeight: 700,
+              fontWeight: 500,
               mb: 4,
               textAlign: 'center',
             }}
@@ -451,86 +465,122 @@ const ContactPage: React.FC = () => {
           </Typography>
 
           <Paper
-            elevation={0}
+            elevation={3}
             sx={{
-              borderRadius: 3,
+               borderRadius: "8px",
               overflow: 'hidden',
-              height: 400,
-              position: 'relative',
+              height: 500,
+              border: '5px solid white',
+              zIndex: 1
             }}
           >
-            {/* This would be replaced with an actual Google Maps embed */}
-            <Box
-              sx={{
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'grey.300',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+            {/* React Leaflet Map - Fixed Props */}
+            <MapContainer 
+                center={position} 
+                zoom={13} 
+                scrollWheelZoom={false} 
+                style={{ height: '100%', width: '100%' }}
             >
-              <Box sx={{ textAlign: 'center' }}>
-                <LocationOn sx={{ fontSize: 60, color: 'grey.500', mb: 2 }} />
-                <Typography variant="h6" color="text.secondary">
-                  Map Integration Coming Soon
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Visit us at: 123 Fashion Street, Style District, Karachi
-                </Typography>
-              </Box>
-            </Box>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={position}>
+                <Popup>
+                  <b>Farhan's Store</b> <br /> 123 Fashion Street, Karachi.
+                </Popup>
+              </Marker>
+            </MapContainer>
           </Paper>
 
-          <Grid container spacing={4} sx={{ mt: 4 }}>
-            <Grid size={{xs:12 ,md:4}}>
-              <Card elevation={0} sx={{ borderRadius: 3 }}>
-                <CardContent>
-                  <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
-                    Store Hours
-                  </Typography>
-                  <Stack spacing={1}>
-                    <Typography variant="body2">Monday - Friday: 10am - 8pm</Typography>
-                    <Typography variant="body2">Saturday: 10am - 6pm</Typography>
-                    <Typography variant="body2">Sunday: 12pm - 5pm</Typography>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid size={{xs:12 ,md:4}}>
-              <Card elevation={0} sx={{ borderRadius: 3 }}>
-                <CardContent>
-                  <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
-                    Parking
-                  </Typography>
-                  <Typography variant="body2">
-                    Free parking available in the adjacent parking lot. 
-                    Valet service available during peak hours.
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid size={{xs:12 ,md:4}}>
-              <Card elevation={0} sx={{ borderRadius: 3 }}>
-                <CardContent>
-                  <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
-                    Accessibility
-                  </Typography>
-                  <Typography variant="body2">
-                    Our store is wheelchair accessible with ramps and elevators. 
-                    Service animals are welcome.
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+<Grid container spacing={4} sx={{ mt: 4 }}>
+  {/* Store Hours */}
+  <Grid size={{ xs: 12, md: 4 }} sx={{ display: 'flex' }}>
+    <Card 
+      elevation={0} 
+      sx={{ 
+        borderRadius: "8px", 
+        border: '1px solid', 
+        borderColor: 'divider',
+        width: '100%', // Ensure it stretches horizontally
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%' // This makes all cards in the row the same height
+      }}
+    >
+      <CardContent sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
+          Store Hours
+        </Typography>
+        <Stack spacing={1}>
+          <Typography variant="body2">Monday - Friday: 10am - 8pm</Typography>
+          <Typography variant="body2">Saturday: 10am - 6pm</Typography>
+          <Typography variant="body2">Sunday: 12pm - 5pm</Typography>
+        </Stack>
+      </CardContent>
+    </Card>
+  </Grid>
+
+  {/* Parking */}
+  <Grid size={{ xs: 12, md: 4 }} sx={{ display: 'flex' }}>
+    <Card 
+      elevation={0} 
+      sx={{ 
+        borderRadius: "8px", 
+        border: '1px solid', 
+        borderColor: 'divider',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%' 
+      }}
+    >
+      <CardContent sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
+          Parking
+        </Typography>
+        <Typography variant="body2">
+          Free parking available in the adjacent parking lot. 
+          Valet service available during peak hours.
+        </Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+  
+  {/* Accessibility */}
+  <Grid size={{ xs: 12, md: 4 }} sx={{ display: 'flex' }}>
+    <Card 
+      elevation={0} 
+      sx={{ 
+        borderRadius: "8px", 
+        border: '1px solid', 
+        borderColor: 'divider',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%' 
+      }}
+    >
+      <CardContent sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
+          Accessibility
+        </Typography>
+        <Typography variant="body2">
+          Our store is wheelchair accessible with ramps and elevators. 
+          Service animals are welcome.
+        </Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+</Grid>
+        
         </Container>
       </Box>
 
       {/* CTA Section */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           color: 'white',
           py: 10,
         }}
@@ -540,7 +590,7 @@ const ContactPage: React.FC = () => {
             variant="h3"
             sx={{
               fontFamily: '"Playfair Display", serif',
-              fontWeight: 700,
+              fontWeight: 500,
               mb: 3,
             }}
           >
@@ -558,6 +608,7 @@ const ContactPage: React.FC = () => {
                 backgroundColor: 'white',
                 color: 'primary.main',
                 px: 4,
+                fontWeight: 'bold',
                 '&:hover': {
                   backgroundColor: 'grey.100',
                 },

@@ -27,14 +27,13 @@ const Footer: React.FC = () => {
       sx={{
         backgroundColor: 'grey.900',
         color: 'white',
-        // py: 1,
-        mt: 'auto',
+
       }}
     >
       <Container maxWidth="xl">
-        <Grid container spacing={4 } sx={{p:0.5}}>
+        <Grid container spacing={4} sx={{ p: 4 }}>
           {/* Company Info */}
-          <Grid size={{xs:12,md:4}}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Box
                 sx={{
@@ -63,7 +62,7 @@ const Footer: React.FC = () => {
               </Typography>
             </Box>
             <Typography variant="body2" sx={{ mb: 3, color: 'grey.400' }}>
-              Premium Pakistani fashion for the modern, elegant woman. 
+              Premium Pakistani fashion for the modern, elegant woman.
               Experience luxury in every thread.
             </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
@@ -86,7 +85,7 @@ const Footer: React.FC = () => {
           </Grid>
 
           {/* Quick Links */}
-          <Grid size={{xs:12,sm:6,md:2}}>
+          <Grid size={{ xs: 12, sm: 6, md: 2 }}>
             <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
               Shop
             </Typography>
@@ -94,7 +93,7 @@ const Footer: React.FC = () => {
               <Link component={RouterLink} to="/products?category=kaftans" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Kaftans
               </Link>
-               
+
               <Link component={RouterLink} to="/products?category=wedding" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Wedding Dresses
               </Link>
@@ -108,7 +107,7 @@ const Footer: React.FC = () => {
           </Grid>
 
           {/* Customer Service */}
-          <Grid size={{xs:12,sm:6,md:2}}>
+          <Grid size={{ xs: 12, sm: 6, md: 2 }}>
             <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
               Help
             </Typography>
@@ -122,12 +121,12 @@ const Footer: React.FC = () => {
               <Link component={RouterLink} to="/about" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 About Us
               </Link>
-              
+
             </Box>
           </Grid>
 
           {/* Contact Info */}
-          <Grid size={{xs:12,md:4}}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Typography variant="h6" sx={{ mb: 2, fontFamily: '"Playfair Display", serif' }}>
               Contact Info
             </Typography>
@@ -154,21 +153,21 @@ const Footer: React.FC = () => {
           </Grid>
         </Grid>
 
-        <Divider sx={{  backgroundColor: 'grey.700' }} />
+        <Divider sx={{ backgroundColor: 'grey.700' }} />
 
         {/* Copyright */}
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
-          <Typography  color="grey.400">
+        <Box sx={{ display: 'flex', fontSize: "10px", flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: 'center', gap: 2 , p:"4px"}}>
+          <Typography color="grey.400" sx={{ fontSize: "10px" }}>
             © {new Date().getFullYear()} Farhan's Store. All rights reserved.
           </Typography>
-          <Box sx={{ display: 'flex', gap: 3 }}>
-            <Link component={RouterLink} to="#" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
+          <Box sx={{ gap: 3 }}>
+            <Link component={RouterLink} to="#" color="grey.400" sx={{ fontSize: "10px", textDecoration: 'none', '&:hover': { color: 'white' }, }}>
               Privacy Policy
             </Link>
-            <Link component={RouterLink} to="#" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
+            <Link component={RouterLink} to="#" color="grey.400" sx={{ fontSize: "10px", textDecoration: 'none', '&:hover': { color: 'white' }, }}>
               Terms of Service
             </Link>
-            <Link component={RouterLink} to="#" color="grey.400" sx={{ textDecoration: 'none', '&:hover': { color: 'white' } }}>
+            <Link component={RouterLink} to="#" color="grey.400" sx={{ fontSize: "10px", textDecoration: 'none', '&:hover': { color: 'white' }, }}>
               Return Policy
             </Link>
           </Box>
