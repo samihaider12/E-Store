@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
       >
         <Container maxWidth="xl">
           <Grid container spacing={4} alignItems="center">
-            <Grid size={{xs:12,md:6}}>
+            <Grid size={{xs:12,md:7}}>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
                   variant="h1"
                   sx={{
                     fontFamily: '"Playfair Display", serif',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
                     mb: 2,
                   }}
@@ -119,7 +119,7 @@ const HomePage: React.FC = () => {
                 </Box>
               </motion.div>
             </Grid>
-            <Grid size={{xs:12,md:6}}>
+            <Grid size={{xs:12,md:5}}>
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -144,7 +144,7 @@ const HomePage: React.FC = () => {
                     controls={false}
                     sx={{
                       width: '100%',
-                      height: '400px',
+                      height: '360px',
                       objectFit: 'cover',
                     }}
                   />
@@ -159,7 +159,7 @@ const HomePage: React.FC = () => {
                       Luxurious comfort meets timeless style
                     </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <Typography  sx={{ fontWeight: 500,fontSize:"25px",color:"green" }}>
+                      <Typography  sx={{ fontWeight: 500,fontSize:"25px",color:"rgba(4, 151, 73, 1)" }}>
                         15,999/Rs
                       </Typography>
                       <Button
